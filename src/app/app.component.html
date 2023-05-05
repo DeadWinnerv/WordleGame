@@ -15,8 +15,8 @@
 				maxlength="1"
 				formControlName="char" 
 				*ngFor="let col of columns"
-				[ngClass]="answers[row][col]?.present ? 'present' : null"
 				[ngClass]="answers[row][col]?.onPosition ? 'on-position' : null"
+				[ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
 				>
 		</form>
 	</div>

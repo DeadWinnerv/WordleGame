@@ -4,7 +4,7 @@ import { WORDS } from 'src/constants/WORDS';
 
 type answer = {
   char: string,
-  present?: boolean
+  present: boolean
   onPosition?: boolean
 } | undefined
 
@@ -38,11 +38,11 @@ export class AppComponent implements OnInit {
   checkWord() {
     if (this.currentWord !== this.word) {
       for (let i = 0; i < 5; i++) {
-        console.log(this.word[i] + ' ' + this.currentWord[i]);
         
         if (this.word[i] === this.currentWord[i]) {
           this.answers[this.currentRow][i] = {
             char: this.currentWord[i],
+            present: true,
             onPosition: true
           }
         } else if (this.word.includes(this.currentWord[i])) {
@@ -53,14 +53,14 @@ export class AppComponent implements OnInit {
           }
         } else {
           this.answers[this.currentRow][i] = {
-            char: this.currentWord[i]
+            char: this.currentWord[i],
+            present: false
           }
         }
       }
     } else {
       
     }
-    console.log(this.answers);
     
     this.currentRow++
     this.currentWord = ''
@@ -68,9 +68,7 @@ export class AppComponent implements OnInit {
 
   handleInputChange() {
     this.currentWord = this.currentWord + this.inputGroup.value.char?.toLocaleLowerCase()
-    if (this.currentWord.length < 5) {
-      console.log(this.currentWord)
-    } else {
+    if (this.currentWord.length >= 5) {
       this.checkWord()
     }
     

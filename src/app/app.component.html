@@ -5,40 +5,19 @@
 		</div>
 	</div>
 	<div class="game">
-		<div class="game-row">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-		</div>
-		<div class="game-row">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-		</div>
-		<div class="game-row">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-		</div>
-		<div class="game-row">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-		</div>
-		<div class="game-row">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-			<input type="text" maxlength="1">
-		</div>
+		<form class="game-row"
+			[formGroup]="inputGroup" 
+			(change)="handleInputChange()" 
+			*ngFor="let row of rows"
+			>
+			<input 
+				type="text" 
+				maxlength="1"
+				formControlName="char" 
+				*ngFor="let col of columns"
+				[ngClass]="answers[row][col]?.present ? 'present' : null"
+				[ngClass]="answers[row][col]?.onPosition ? 'on-position' : null"
+				>
+		</form>
 	</div>
 </div>

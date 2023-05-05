@@ -1,3 +1,6 @@
+$mainColor: #38a3a5;
+$secondaryColor: #c7f9cc;
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -6,9 +9,9 @@
 	gap: 5rem;
 	height: 100vh;
 	width: 100vw;
-	background-color: #3BA3D0;
+	background-color: $mainColor;
 	.header {
-		background-color: #63DB93;
+		background-color: $secondaryColor;
 		padding: 0.5rem;
 		padding-left: 3rem;
 		padding-right: 3rem;
@@ -20,7 +23,7 @@
 		}
 	}
 	.game {
-		background-color: #63DB93;
+		background-color: $secondaryColor;
 		padding: 1rem;
 		border-radius: 12px;
 		display: grid;
@@ -32,12 +35,23 @@
 			gap: 1rem;
 			input {
 				text-align: center;
-				font-size: 68px;
-				width: 68px;
-				height: 68px;
+				vertical-align: middle;
+				font-size: 56px;
+				width: 72px;
+				height: 72px;
 				border: none;
 				border-radius: 8px;
 				font-weight: 700;
+				text-transform: uppercase;
+			}
+			input:disabled {
+				background-color: #a4a4a4;
+			}
+			input.present {
+				background-color: #fff99f;
+			}
+			input.on-position {
+				background-color: #7cfa89;
 			}
 		}
 	}

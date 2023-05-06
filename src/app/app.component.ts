@@ -34,7 +34,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit(): void {
     this.inputs = this.inputList.toArray()
-    console.log(this.inputs);
     this.inputs[0].nativeElement.focus() 
     this.inputList.changes.subscribe((changes) => {
       this.inputs = changes.toArray()
@@ -85,7 +84,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   handleInputChange(event: Event) {
-    console.log('from handlechanges' + this.currentCol);
     
     this.currentWord = this.chars.toString().replaceAll(',', '')
     this.currentCol = this.chars.length
@@ -104,15 +102,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
   handleBackspace(event: KeyboardEvent) {
-    console.log(this.currentCol);
-    
     if (event.key === 'Backspace') {
       this.currentWord = this.currentWord.slice(0, -1)
       this.chars.pop()
       this.currentCol = this.currentWord.length
       this.inputs[this.currentCol].nativeElement.value = ''
       this.inputs[this.currentCol].nativeElement.focus()
-      console.log(this.currentWord);
     }
     
   }

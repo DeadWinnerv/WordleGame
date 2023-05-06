@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         setTimeout( () => {
           this.isWrong = false
           this.chars = []
-        }, 2000)
+        }, 500)
       }
     }
   }

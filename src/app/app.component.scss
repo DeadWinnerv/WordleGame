@@ -17,6 +17,9 @@ $accentColor: #024A68;
 		padding-left: 3rem;
 		padding-right: 3rem;
 		border-radius: 8px;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
 		.header-title {
 			font-size: 30px;
 			font-weight: 700;
@@ -28,7 +31,7 @@ $accentColor: #024A68;
 		}
 		span {
 			color: $accentColor;
-			font-size: 30px;
+			font-size: 22px;
 			cursor: pointer;
 		}
 	}

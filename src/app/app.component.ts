@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   chars: string[] = [];
   isWrong: boolean = false;
   inputs: ElementRef[];
-  isWinner?: boolean = false;
+  gameOver?: boolean = false;
   timer: number;
   record: number;
 
@@ -80,6 +80,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       }
     } else {
+      this.gameOver = true;
       this.answers[this.currentRow] = [
         { char: this.currentWord[0], present: true, onPosition: true },
         { char: this.currentWord[1], present: true, onPosition: true },
@@ -91,6 +92,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.currentRow++;
     this.chars = [];
+    this.currentRow >= 5 ? this.gameOver = true : null
   }
 
   handleInputChange(event: Event) {
@@ -132,5 +134,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.columns = [0, 1, 2, 3, 4];
     this.chars = [];
     this.isWrong = false;
+    this.gameOver = false;
   }
 }

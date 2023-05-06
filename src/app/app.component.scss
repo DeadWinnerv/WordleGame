@@ -1,5 +1,6 @@
 $mainColor: #38a3a5;
 $secondaryColor: #c7f9cc;
+$accentColor: #024A68;
 
 .wrapper {
 	display: flex;
@@ -19,7 +20,16 @@ $secondaryColor: #c7f9cc;
 		.header-title {
 			font-size: 30px;
 			font-weight: 700;
-			color: #024A68;
+			color: $accentColor;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+		}
+		span {
+			color: $accentColor;
+			font-size: 30px;
+			cursor: pointer;
 		}
 	}
 	.game {
@@ -47,6 +57,9 @@ $secondaryColor: #c7f9cc;
 			}
 			span.cell {
 				cursor: default;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 			.cell:disabled {
 				background-color: #a4a4a4;
@@ -54,9 +67,6 @@ $secondaryColor: #c7f9cc;
 			.cell.present {
 				background-color: #fff99f;
 			}
-			// .cell.not-present {
-			// 	background-color: #787575;
-			// }
 			.cell.on-position {
 				background-color: #7cfa89;
 			}

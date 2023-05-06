@@ -88,7 +88,7 @@ $accentColor: #024A68;
 				background-color: #7cfa89;
 			}
 			.cell.error {
-				animation: horizontal-shaking 0.2s 0.3s;
+				animation: horizontal-shaking 0.4s infinite;
 			}
 			input.cell:focus {
 				outline: none;

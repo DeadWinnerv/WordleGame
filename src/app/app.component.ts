@@ -104,7 +104,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.inputs[this.currentCol].nativeElement.focus();
     if (this.currentWord.length === 5) {
       if (WORDS.includes(this.currentWord)) {
-      this.checkWord();
+        this.checkWord();
       } else {
       this.isWrong = true
         setTimeout( () => {

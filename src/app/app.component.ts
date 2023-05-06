@@ -101,15 +101,15 @@ export class AppComponent implements OnInit, AfterViewInit {
       : (this.currentCol = 0);
     this.inputs[this.currentCol].nativeElement.focus();
     if (this.currentWord.length === 5) {
-      // if (WORDS.includes(this.currentWord)) {
+      if (WORDS.includes(this.currentWord)) {
       this.checkWord();
-      // } else {
-      // this.isWrong = true
-      //   setTimeout( () => {
-      //     this.isWrong = false
-      //     this.chars = []
-      //   }, 2000)
-      // }
+      } else {
+      this.isWrong = true
+        setTimeout( () => {
+          this.isWrong = false
+          this.chars = []
+        }, 2000)
+      }
     }
   }
   handleBackspace(event: KeyboardEvent) {

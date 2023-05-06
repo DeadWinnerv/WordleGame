@@ -73,10 +73,10 @@ $accentColor: #024A68;
 			.cell.error {
 				animation: horizontal-shaking 0.4s 1000ms;
 			}
-			// input.cell:focus {
-			// 	outline: none;
-			// 	caret-color: transparent;
-			// }
+			input.cell:focus {
+				outline: none;
+				caret-color: transparent;
+			}
 		}
 	}
 }

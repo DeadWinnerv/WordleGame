@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { WORDS } from 'src/constants/WORDS';
 
 type answer = {
@@ -21,9 +20,7 @@ export class AppComponent implements OnInit {
   currentRow: number = 0;
   rows: number[] = [0,1,2,3,4]
   columns: number[] = [0,1,2,3,4]
-  inputGroup = new FormGroup ({
-    char: new FormControl('')
-  })
+  chars: string[] = []
 
   ngOnInit(): void {
     this.generateWord()
@@ -59,15 +56,21 @@ export class AppComponent implements OnInit {
         }
       }
     } else {
-      
+      this.answers[this.currentRow] = [
+        {char: this.currentWord[0], present: true, onPosition: true},
+        {char: this.currentWord[1], present: true, onPosition: true},
+        {char: this.currentWord[2], present: true, onPosition: true},
+        {char: this.currentWord[3], present: true, onPosition: true},
+        {char: this.currentWord[4], present: true, onPosition: true},
+      ]
     }
     
     this.currentRow++
-    this.currentWord = ''
+    this.chars = []
   }
 
   handleInputChange() {
-    this.currentWord = this.currentWord + this.inputGroup.value.char?.toLocaleLowerCase()
+    this.currentWord = this.chars.toString().replaceAll(',', '')
     if (this.currentWord.length >= 5) {
       this.checkWord()
     }

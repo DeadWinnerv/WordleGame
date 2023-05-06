@@ -33,7 +33,7 @@ $secondaryColor: #c7f9cc;
 			display: grid;
 			grid-template-columns: repeat(5,1fr);
 			gap: 1rem;
-			input {
+			.cell {
 				text-align: center;
 				vertical-align: middle;
 				font-size: 56px;
@@ -43,17 +43,21 @@ $secondaryColor: #c7f9cc;
 				border-radius: 8px;
 				font-weight: 700;
 				text-transform: uppercase;
+				background-color: #fff;
 			}
-			input:disabled {
+			span.cell {
+				cursor: default;
+			}
+			.cell:disabled {
 				background-color: #a4a4a4;
 			}
-			input.present {
+			.cell.present {
 				background-color: #fff99f;
 			}
-			// input.not-present {
+			// .cell.not-present {
 			// 	background-color: #787575;
 			// }
-			input.on-position {
+			.cell.on-position {
 				background-color: #7cfa89;
 			}
 		}

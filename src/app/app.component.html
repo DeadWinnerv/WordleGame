@@ -1,23 +1,35 @@
 <div class="wrapper">
-	<div class="header">
-		<div class="header-title">
-			{{ title | uppercase }}
-		</div>
-	</div>
-	<div class="game">
-		<form class="game-row"
-			[formGroup]="inputGroup" 
-			(change)="handleInputChange()" 
-			*ngFor="let row of rows"
-			>
-			<input 
-				type="text" 
-				maxlength="1"
-				formControlName="char" 
-				*ngFor="let col of columns"
-				[ngClass]="answers[row][col]?.onPosition ? 'on-position' : null"
-				[ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
-				>
-		</form>
-	</div>
+  <div class="header">
+    <div class="header-title">
+      {{ title | uppercase }}
+    </div>
+  </div>
+  <div class="game">
+    <div
+      class="game-row"
+      (change)="handleInputChange()"
+      *ngFor="let row of rows"
+    >
+      <ng-container *ngFor="let col of columns">
+        <input
+          type="text"
+          maxlength="1"
+          class="cell"
+					[(ngModel)]="chars[col]"
+          *ngIf="currentRow === row; else answer"
+					[ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
+          [class]="answers[row][col]?.onPosition ? 'on-position' : ''"
+        />
+        <ng-template #answer>
+          <span
+            class="cell"
+            [ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
+            [class]="answers[row][col]?.onPosition ? 'on-position' : ''"
+          >
+            {{ answers[row][col]?.char ?? "" | uppercase }}
+          </span>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
 </div>

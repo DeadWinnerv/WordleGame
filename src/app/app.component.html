@@ -7,15 +7,17 @@
   <div class="game">
     <div
       class="game-row"
-      (change)="handleInputChange()"
       *ngFor="let row of rows"
     >
-      <ng-container *ngFor="let col of columns">
+      <ng-container *ngFor="let col of columns;">
         <input
+          #input
           type="text"
           maxlength="1"
           class="cell"
 					[(ngModel)]="chars[col]"
+          (ngModelChange)="handleInputChange($event)"
+          (keydown)="handleBackspace($event)"
           *ngIf="currentRow === row; else answer"
 					[ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
           [class]="answers[row][col]?.onPosition ? 'on-position' : ''"

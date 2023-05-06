@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, QueryList , ViewChildren, AfterViewInit } from '@angular/core';
 import { WORDS } from 'src/constants/WORDS';
 
 type answer = {
@@ -12,22 +12,36 @@ type answer = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'WordleGame';
   word: string;
   currentWord: string = '';
   answers: answer[][] = [[],[],[],[],[]]
   currentRow: number = 0;
+  currentCol: number = 0
   rows: number[] = [0,1,2,3,4]
   columns: number[] = [0,1,2,3,4]
   chars: string[] = []
   isWrong: boolean = false;
-
+  inputs: ElementRef[]
+  
   ngOnInit(): void {
     this.generateWord()
     console.log(this.word);
   }
-
+  
+  @ViewChildren('input') inputList: QueryList<ElementRef>;
+  
+  ngAfterViewInit(): void {
+    this.inputs = this.inputList.toArray()
+    console.log(this.inputs);
+    this.inputs[0].nativeElement.focus() 
+    this.inputList.changes.subscribe((changes) => {
+      this.inputs = changes.toArray()
+    this.inputs[0].nativeElement.focus() 
+    });
+  }
+  
   generateWord() {
     this.word = WORDS.at(Math.floor(Math.random() * WORDS.length))!
     console.log(Math.floor(Math.random() * WORDS.length));
@@ -70,18 +84,36 @@ export class AppComponent implements OnInit {
     this.chars = []
   }
 
-  handleInputChange() {
+  handleInputChange(event: Event) {
+    console.log('from handlechanges' + this.currentCol);
+    
     this.currentWord = this.chars.toString().replaceAll(',', '')
-    if (this.currentWord.length >= 5) {
-      if (WORDS.includes(this.currentWord)) {
+    this.currentCol = this.chars.length
+    this.currentCol !== 5 ? this.currentCol = this.chars.length : this.currentCol = 0
+    this.inputs[this.currentCol].nativeElement.focus()
+    if (this.currentWord.length === 5) {
+      // if (WORDS.includes(this.currentWord)) {
         this.checkWord()
-      } else {
-        this.isWrong = true
-        setTimeout( () => {
-          this.isWrong = false
-          this.chars = []
-        }, 2000)
-      }
+      // } else {
+        // this.isWrong = true
+      //   setTimeout( () => {
+      //     this.isWrong = false
+      //     this.chars = []
+      //   }, 2000)
+      // }
     }
+  }
+  handleBackspace(event: KeyboardEvent) {
+    console.log(this.currentCol);
+    
+    if (event.key === 'Backspace') {
+      this.currentWord = this.currentWord.slice(0, -1)
+      this.chars.pop()
+      this.currentCol = this.currentWord.length
+      this.inputs[this.currentCol].nativeElement.value = ''
+      this.inputs[this.currentCol].nativeElement.focus()
+      console.log(this.currentWord);
+    }
+    
   }
 }

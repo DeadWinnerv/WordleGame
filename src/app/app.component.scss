@@ -63,6 +63,10 @@ $secondaryColor: #c7f9cc;
 			.cell.error {
 				animation: horizontal-shaking 0.4s 1000ms;
 			}
+			// input.cell:focus {
+			// 	outline: none;
+			// 	caret-color: transparent;
+			// }
 		}
 	}
 }

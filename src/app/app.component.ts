@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   rows: number[] = [0,1,2,3,4]
   columns: number[] = [0,1,2,3,4]
   chars: string[] = []
+  isWrong: boolean = false;
 
   ngOnInit(): void {
     this.generateWord()
@@ -72,8 +73,15 @@ export class AppComponent implements OnInit {
   handleInputChange() {
     this.currentWord = this.chars.toString().replaceAll(',', '')
     if (this.currentWord.length >= 5) {
-      this.checkWord()
+      if (WORDS.includes(this.currentWord)) {
+        this.checkWord()
+      } else {
+        this.isWrong = true
+        setTimeout( () => {
+          this.isWrong = false
+          this.chars = []
+        }, 2000)
+      }
     }
-    
   }
 }

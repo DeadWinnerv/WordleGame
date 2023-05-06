@@ -60,6 +60,17 @@ $secondaryColor: #c7f9cc;
 			.cell.on-position {
 				background-color: #7cfa89;
 			}
+			.cell.error {
+				animation: horizontal-shaking 0.4s 1000ms;
+			}
 		}
 	}
+}
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0); background-color: #e48787; }
+  25% { transform: translateX(2px); background-color: #e48787; }
+  50% { transform: translateX(-2px); background-color: #e48787; }
+  75% { transform: translateX(2px); background-color: #e48787; }
+  100% { transform: translateX(0); background-color: #e48787; }
 }

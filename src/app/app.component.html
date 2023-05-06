@@ -19,6 +19,7 @@
           *ngIf="currentRow === row; else answer"
 					[ngClass]="answers[row][col]?.present ? 'present' : 'not-present'"
           [class]="answers[row][col]?.onPosition ? 'on-position' : ''"
+					[class]="isWrong ? 'error' : ''"
         />
         <ng-template #answer>
           <span

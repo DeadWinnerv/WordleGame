@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   handleInputChange(event: Event) {
-    this.currentWord = this.chars.toString().replaceAll(',', '');
+    this.currentWord = this.chars.toString().replaceAll(',', '').toLowerCase();
     this.currentCol = this.chars.length;
     this.currentCol !== 5
       ? (this.currentCol = this.chars.length)

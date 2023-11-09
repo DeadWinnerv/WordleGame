@@ -1,12 +1,18 @@
 {
   "name": "wordle-game",
   "version": "0.0.0",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron": "electron .",
+    "build:electron": "ng build --base-href ./ && electron .",
+    "electron-package": "electron-packager . wordle-game --overwrite --asar --icon=dist/wordle/favicon.ico --ignore=^src$ --ignore=^src-backend$ --ignore=^.editorconfig$ --ignore=^.gitignore$ --ignore=^angular.json$ --ignore=^browserslist$ --ignore=^karma.conf.js$ --ignore=^package-lock.json$ --ignore=^README.md$ --ignore=^tslint --ignore=^tsconfig",
+    "build:package": "npm run build && npm run electron-package",
+    "package": " npm run electron-package"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +33,8 @@
     "@angular/cli": "~15.2.4",
     "@angular/compiler-cli": "^15.2.0",
     "@types/jasmine": "~4.3.0",
+    "electron": "^27.0.3",
+    "electron-packager": "^17.1.2",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
